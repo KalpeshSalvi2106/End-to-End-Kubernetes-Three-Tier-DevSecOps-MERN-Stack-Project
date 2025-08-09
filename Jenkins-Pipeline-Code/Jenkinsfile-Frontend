@@ -29,8 +29,8 @@ pipeline {
                 dir('Application-Code/frontend') {
                     withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=Three-Tier-frontend \
-                        -Dsonar.projectKey=Three-Tier-frontend  ''' 
+                        -Dsonar.projectName=3-Tier-frontend \
+                        -Dsonar.projectKey=3-Tier-frontend  ''' 
                     }
                 }
             }
@@ -42,14 +42,14 @@ pipeline {
                  }
              }
          }
-        //  stage('OWASP Dependency-Check Scan') {
-        //      steps {
-        //          dir('Application-Code/frontend) {
-        //              dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-        //              dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-        //          }
-        //      }
-        //  }
+        //   stage('OWASP Dependency-Check Scan') {
+        //       steps {
+        //           dir('Application-Code/frontend) {
+        //               dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+        //               dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //           }
+        //       }
+        //   }
         stage('Trivy File Scan') {
             steps {
                 dir('Application-Code/frontend') {
