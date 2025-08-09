@@ -4,7 +4,7 @@ pipeline {
         
         nodejs 'nodejs'
     }
-    environment  {
+    environment {
         SCANNER_HOME=tool 'sonar-scanner'
         AWS_ACCOUNT_ID = credentials('AWS_ID')
         AWS_ECR_REPO_NAME = credentials('ECR_BackREPO')
@@ -29,8 +29,8 @@ pipeline {
                 dir('Application-Code/backend') {
                     withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=Three-Tier-backend \
-                        -Dsonar.projectKey=Three-Tier-backend  ''' 
+                        -Dsonar.projectName=3-Tier-backend \
+                        -Dsonar.projectKey=3-Tier-backend  ''' 
                     }
                 }
             }
@@ -47,9 +47,9 @@ pipeline {
         //          dir('Application-Code/backend') {
         //              dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
         //              dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-        //          }
-        //      }
-        //  }
+        //           }
+        //       }
+        //   }
         stage('Trivy File Scan') {
             steps {
                 dir('Application-Code/backend') {
